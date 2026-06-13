@@ -1,0 +1,36 @@
+# PATCH code-release dependencies.
+#
+# Pins reflect the versions the release was verified against. The CORE method
+# (hierarchical conformal, APS/RAPS, VLM set refiner, comparators) needs only
+# numpy + scipy. The remaining groups are needed for specific reproduce steps;
+# install all of them for the full pipeline.
+
+# --- Core: conformal method + shift diagnostic (always required) ---
+numpy>=1.24,<3
+scipy>=1.10
+
+# --- Classifier inference (RAPS ablation, PACE-vs-competitors benchmark) ---
+xgboost>=2.0
+scikit-learn>=1.3        # transitive (model utilities / metrics)
+
+# --- Downstream survival analysis (Orion CRC) ---
+lifelines>=0.27
+pandas>=2.0
+matplotlib>=3.7          # KM figure rendering
+openpyxl>=3.1            # read the clinical .xlsx
+
+# --- Config / dataset-group YAML (PACE benchmark; optional) ---
+pyyaml>=6.0
+hydra-core>=1.3          # parity with the research repo's config system
+
+# --- Testing ---
+pytest>=7.4
+
+# --- VLM verifier (optional; only for the VLM audit + OSS server) ---
+# The audit runner imports the relevant SDK lazily per --model, so install only
+# the one(s) you need. The OSS Qwen3-VL path uses Modal + an OpenAI-compatible
+# client and needs no proprietary key.
+openai>=1.40             # vLLM / OpenAI-compatible endpoints
+modal>=0.64              # deploy the OSS Qwen3-VL server (modal_apps/)
+# anthropic>=0.34        # uncomment to audit with Claude models
+# google-generativeai>=0.7  # uncomment to audit with Gemini models

@@ -1,0 +1,71 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+.installed.cfg
+*.egg
+
+# --- Virtual environments ---
+.venv/
+venv/
+env/
+ENV/
+.conda/
+
+# --- Testing / coverage ---
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.mypy_cache/
+.ruff_cache/
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+
+# --- PATCH data & model artifacts (NOT versioned; fetch from Zenodo) ---
+data/
+results/
+*.npz
+*.ubj
+*.model
+*.pkl
+*.joblib
+*.h5
+*.zarr/
+*.xlsx
+*.csv
+
+# --- VLM audit artifacts ---
+vlm_100cells/
+vlm_responses/
+vlm_responses_*/
+vlm_audit_results*.json
+
+# --- Secrets / credentials (NEVER commit) ---
+.env
+*.token
+*_token
+.github_token
+*.pem
+*.key
+secrets/
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# --- The one results file we DO ship (un-ignore it; order matters) ---
+!results/
+!results/vlm_eval/
+!results/vlm_eval/vlm_audit_results_qwen3vl32b.json
